@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import generateSecret from '../logic/generateSecret';
+import generateSecret from '../src/logic/generateSecret';
 
 const values = [0.1, 0.2, 0.3, 0.4, 0.5];
 const possibleDigits = '0123456789abcdefghijklmnopqrstuvwxyz';

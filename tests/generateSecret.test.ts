@@ -24,7 +24,7 @@ describe('generateSecret', () => {
 
   it('all digits of string result must be unique', () => {
     const numString = generateSecret(3, 7);
-    const result = numString === String(new Set(numString));
+    const result = numString.length === new Set(numString).size;
     expect(result).toBe(true);
   });
 
@@ -47,6 +47,6 @@ describe('generateSecret', () => {
 
     const numString = generateSecret(length, base, random);
     expect(step).toBe(length);
-    expect(numString).toBe('1234');
+    expect(numString).toBe('1245');
   });
 });

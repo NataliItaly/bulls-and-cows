@@ -5,7 +5,9 @@
   "description": "[RS School](https://rs.school/) Task implementation of Bulls and Cows game",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

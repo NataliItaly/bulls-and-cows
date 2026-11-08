@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import generateSecret from '../src/logic/generateSecret';
+import { POSSIBLE_DIGITS } from '../src/logic/constants';
 
 const values = [0.1, 0.2, 0.3, 0.4, 0.5];
-const possibleDigits = '0123456789abcdefghijklmnopqrstuvwxyz';
 
 describe('generateSecret', () => {
   it('should return a string of length 4 if parameter length is equal to 4', () => {
@@ -17,7 +17,7 @@ describe('generateSecret', () => {
 
   it('should return the number of the specified base', () => {
     const numString = generateSecret(2, 10);
-    const allowedDigits = possibleDigits.slice(0, 10);
+    const allowedDigits = POSSIBLE_DIGITS.slice(0, 10);
     const result = numString.split('').every((el) => allowedDigits.includes(el));
     expect(result).toBe(true);
   });
@@ -30,7 +30,7 @@ describe('generateSecret', () => {
 
   it('should include all available digits when length equals base', () => {
     const numString = generateSecret(7, 7);
-    const allowedDigits = possibleDigits.slice(0, 7);
+    const allowedDigits = POSSIBLE_DIGITS.slice(0, 7);
     const result = allowedDigits.split('').every((el) => numString.includes(el));
     expect(result).toBe(true);
   });

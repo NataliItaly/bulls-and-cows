@@ -1,3 +1,5 @@
+import { POSSIBLE_DIGITS } from './constants.js';
+
 export default function generateSecret(
   length: number,
   base: number,
@@ -8,8 +10,7 @@ export default function generateSecret(
   }
 
   let result: string = '';
-  const possibleDigits: string = '0123456789abcdefghijklmnopqrstuvwxyz';
-  let basePossibleDigits: string = possibleDigits.slice(0, base);
+  let basePossibleDigits: string = POSSIBLE_DIGITS.slice(0, base);
 
   for (let i = 0; i < length; i++) {
     const currentIndex: number = Math.floor(random() * basePossibleDigits.length);

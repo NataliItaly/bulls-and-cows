@@ -1,5 +1,22 @@
 const cache = new Map<string, number>();
 
+function countInner(length: number, base: number): number {
+  if (length === 0) {
+    return 1;
+  }
+  if (length === 1) {
+    return base;
+  }
+
+  const key = `${length}:${base}`;
+  const cached = cache.get(key);
+  if (cached !== undefined) return cached;
+
+  const result = base * countInner(length - 1, base - 1);
+  cache.set(key, result);
+  return result;
+}
+
 export default function countPossibleSecrets(length: number, base: number): number {
   if (!Number.isInteger(length) || !Number.isInteger(base)) {
     throw new Error('Length and base must be integers');
@@ -14,18 +31,5 @@ export default function countPossibleSecrets(length: number, base: number): numb
     throw new Error('Base must be between 2 and 36');
   }
 
-  if (length === 0) {
-    return 1;
-  }
-  if (length === 1) {
-    return base;
-  }
-
-  const key = `${length}:${base}`;
-  const cached = cache.get(key);
-  if (cached !== undefined) return cached;
-
-  const result = base * countPossibleSecrets(length - 1, base - 1);
-  cache.set(key, result);
-  return result;
+  return countInner(length, base);
 }

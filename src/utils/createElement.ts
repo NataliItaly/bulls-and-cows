@@ -1,11 +1,11 @@
 export type Attributes = Record<string, string>;
 
-export default function createElement(
-  tag: string,
+export default function createElement<K extends keyof HTMLElementTagNameMap>(
+  tag: K,
   attributes: Attributes,
   text?: string,
-): HTMLElement {
-  const element: HTMLElement = document.createElement(tag);
+): HTMLElementTagNameMap[K] {
+  const element = document.createElement(tag);
   for (const [attr, value] of Object.entries(attributes)) {
     element.setAttribute(attr, value);
   }

@@ -105,6 +105,12 @@ fieldset {
   background: #200092;
 }
 
+.form__error {
+  height: 20px;
+  color: red;
+  line-height: 20px;
+}
+
 .form__submit-btn {
   background: #0b075e;
 }

@@ -10,7 +10,7 @@ export default function createForm(): HTMLFormElement {
   );
   fieldset1.append(fieldsetTitle1);
 
-  ['length', 'system'].forEach((el) => {
+  ['length', 'base'].forEach((el) => {
     const formRow = createElement('div', { class: 'form__row' });
     const label = createElement(
       'label',
@@ -33,6 +33,8 @@ export default function createForm(): HTMLFormElement {
     formRow.append(label, input);
     fieldset1.append(formRow);
   });
+  const errorMessage = createElement('p', { class: 'form__error', id: 'error-message' });
+  fieldset1.append(errorMessage);
 
   const fieldset2 = createElement('fieldset', { class: 'form__fieldset' });
   const fieldsetTitle2 = createElement(

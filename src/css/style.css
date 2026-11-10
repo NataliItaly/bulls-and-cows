@@ -116,7 +116,7 @@ fieldset {
 
 .form__error {
   height: 20px;
-  color: red;
+  color: #f85e5e;
   line-height: 20px;
 }
 

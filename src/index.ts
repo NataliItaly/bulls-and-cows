@@ -1,7 +1,6 @@
+import './css/style.css';
+
 import createContainer from './ui/createContainer.js';
-/* import countPossibleSecrets from './logic/countPossibleSecrets.js';
-import generateSecret from './logic/generateSecret.js';
-import { setGameState } from './logic/state.js'; */
 import submitStartForm from './utils/submitStartForm.js';
 import startScreen from './ui/startScreen.js';
 import leaderboardScreen from './ui/leaderboardScreen.js';

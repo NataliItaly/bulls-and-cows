@@ -2,8 +2,8 @@ import createElement from '../utils/createElement.js';
 import { constants } from '../logic/state.js';
 import countPossibleSecrets from '../logic/countPossibleSecrets.js';
 
-export default function createForm(): HTMLFormElement {
-  const form: HTMLFormElement = createElement('form', { class: 'form' });
+export default function startScreen(): HTMLFormElement {
+  const form: HTMLFormElement = createElement('form', { class: 'screen form', id: 'start' });
   const fieldset1 = createElement('fieldset', { class: 'form__fieldset' });
   const fieldsetTitle1 = createElement(
     'h3',
@@ -82,7 +82,7 @@ export default function createForm(): HTMLFormElement {
 
   const leaderboardBtn = createElement(
     'button',
-    { class: 'leaderboard-btn', type: 'button' },
+    { class: 'leaderboard-btn', type: 'button', id: 'leaderboard-btn' },
     'Leaderboard',
   );
 

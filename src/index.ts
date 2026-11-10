@@ -24,6 +24,12 @@ if (app) {
   containerEl.addEventListener('click', function (e: MouseEvent) {
     const targetEl = e.target;
     if (targetEl instanceof HTMLButtonElement && targetEl.id === 'settings-btn') {
+      const gameScreen = document.getElementById('game');
+      if (gameScreen) gameScreen.remove();
+
+      const leaderboardScreen = document.getElementById('leaderboard');
+      if (leaderboardScreen) leaderboardScreen.remove();
+
       const startScreenEl = startScreen();
       containerEl.append(startScreenEl);
     }

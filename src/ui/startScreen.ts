@@ -70,7 +70,7 @@ export default function startScreen(): HTMLFormElement {
       id: 'form-btn',
       type: 'submit',
     },
-    'Start Game',
+    'Play',
   );
 
   const possibleSecretsNum = countPossibleSecrets(constants.defaultLength, constants.defaultBase);

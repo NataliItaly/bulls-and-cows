@@ -46,7 +46,7 @@ export default function gameScreen(): HTMLElement {
 
   const leaderboardBtn = createElement(
     'button',
-    { class: 'leaderboard-btn', type: 'button' },
+    { class: 'leaderboard-btn', id: 'leaderboard-btn', type: 'button' },
     'Leaderboard',
   );
 

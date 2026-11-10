@@ -23,6 +23,7 @@ export default function gameScreen(): HTMLElement {
     id: 'game-input',
     name: 'game-input',
     type: 'text',
+    maxLength: String(gameState.length),
   });
   const formBtn = createElement(
     'button',

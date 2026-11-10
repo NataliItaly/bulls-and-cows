@@ -16,8 +16,8 @@ export type PreviousGame = {
 export type State = {
   id: string;
   secret: string;
-  length: number | undefined;
-  base: number | undefined;
+  length: number;
+  base: number;
   bulls: number;
   cows: number;
   attempt: number;

@@ -11,6 +11,7 @@ import { BASES } from './logic/getBase.js';
 import setErrorMessage from './utils/setErrorMessage.js';
 import isNumberSystem from './utils/isNumberSystem.js';
 import setPossibleInfo from './utils/setPossibleInfo.js';
+import isValidSymbol from './logic/isValidSymbol.js';
 
 const app = document.querySelector<HTMLDivElement>('#app');
 
@@ -36,7 +37,8 @@ if (app) {
 
         if (base) {
           const possibleSecrets = countPossibleSecrets(length, base);
-          setGameState({ possibleSecrets: possibleSecrets });
+          setPossibleInfo(possibleSecrets);
+          setGameState({ possibleSecrets });
         }
         setGameState({ length: length });
       }
@@ -57,12 +59,22 @@ if (app) {
 
         if (length) {
           const possibleSecrets = countPossibleSecrets(length, base);
-          setGameState({ possibleSecrets: possibleSecrets });
+          setGameState({ possibleSecrets });
+          setPossibleInfo(possibleSecrets);
         }
         setGameState({ base: base });
       }
 
       setErrorMessage('');
+    }
+    if (targetEl instanceof HTMLInputElement && targetEl.id === 'game-input') {
+      const gameState = getGameState();
+      const value = targetEl.value;
+      const validValue = value
+        .split('')
+        .filter((char) => isValidSymbol(char, gameState.base))
+        .join('');
+      targetEl.value = validValue;
     }
   });
 

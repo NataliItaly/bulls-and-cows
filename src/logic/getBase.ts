@@ -1,6 +1,6 @@
 export type NumberSystem = 'bin' | 'oct' | 'dec' | 'hex';
 
-const BASES: Record<NumberSystem, number> = {
+export const BASES: Record<NumberSystem, number> = {
   bin: 2,
   oct: 8,
   dec: 10,

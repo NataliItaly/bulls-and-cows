@@ -5,13 +5,13 @@ import submitStartForm from './utils/submitStartForm.js';
 import startScreen from './ui/startScreen.js';
 import leaderboardScreen from './ui/leaderboardScreen.js';
 import { getGameState, setGameState } from './logic/state.js';
-//import generateSecret from './logic/generateSecret.js';
 import countPossibleSecrets from './logic/countPossibleSecrets.js';
 import { BASES } from './logic/getBase.js';
 import setErrorMessage from './utils/setErrorMessage.js';
 import isNumberSystem from './utils/isNumberSystem.js';
 import setPossibleInfo from './utils/setPossibleInfo.js';
 import isValidSymbol from './logic/isValidSymbol.js';
+import isUniqueSymbol from './logic/isUniqueSynbol.js';
 
 const app = document.querySelector<HTMLDivElement>('#app');
 
@@ -69,11 +69,14 @@ if (app) {
     }
     if (targetEl instanceof HTMLInputElement && targetEl.id === 'game-input') {
       const gameState = getGameState();
+
+      let validValue: string = '';
       const value = targetEl.value;
-      const validValue = value
-        .split('')
-        .filter((char) => isValidSymbol(char, gameState.base))
-        .join('');
+      for (const char of value) {
+        if (isValidSymbol(char, gameState.base) && isUniqueSymbol(char, validValue)) {
+          validValue += char;
+        }
+      }
       targetEl.value = validValue;
     }
   });

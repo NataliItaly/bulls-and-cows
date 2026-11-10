@@ -2,7 +2,7 @@ import createElement from '../utils/createElement.js';
 
 export default function createForm(): HTMLFormElement {
   const form: HTMLFormElement = createElement('form', { class: 'form' });
-  const fieldset1 = createElement('fieldset', { class: 'fieldset' });
+  const fieldset1 = createElement('fieldset', { class: 'form__fieldset' });
   const fieldsetTitle1 = createElement(
     'h3',
     { class: 'form__fieldset-title' },
@@ -32,10 +32,9 @@ export default function createForm(): HTMLFormElement {
 
     formRow.append(label, input);
     fieldset1.append(formRow);
-    form.append(fieldset1);
   });
 
-  const fieldset2 = createElement('fieldset', { class: 'fieldset' });
+  const fieldset2 = createElement('fieldset', { class: 'form__fieldset' });
   const fieldsetTitle2 = createElement(
     'h3',
     { class: 'form__fieldset-title' },
@@ -43,13 +42,8 @@ export default function createForm(): HTMLFormElement {
   );
   fieldset2.append(fieldsetTitle2);
 
+  const formRow = createElement('div', { class: 'form__row form__btn-row' });
   ['bin', 'oct', 'dec', 'hex'].forEach((el) => {
-    const formRow = createElement('div', { class: 'form__row' });
-    const label = createElement(
-      'label',
-      { class: 'form__label', id: `${el}-label`, htmlFor: el },
-      el,
-    );
     const className = el === 'dec' ? 'form__row-btn, form__row-btn_active' : 'form__row-btn';
     const button = createElement(
       'button',
@@ -61,22 +55,21 @@ export default function createForm(): HTMLFormElement {
       el,
     );
 
-    formRow.append(label, button);
-    fieldset1.append(formRow);
-    form.append(fieldset1);
+    formRow.append(button);
   });
+  fieldset2.append(formRow);
 
   const formButton = createElement(
     'button',
     {
-      class: 'form__btn',
+      class: 'form__submit-btn',
       id: 'form-btn',
       type: 'submit',
     },
     'Start Game',
   );
 
-  form.append(formButton);
+  form.append(fieldset1, fieldset2, formButton);
 
   return form;
 }

@@ -1,5 +1,9 @@
+import createContainer from './ui/createContainer.js';
+
 const app = document.querySelector<HTMLDivElement>('#app');
 
 if (app) {
-  app.textContent = 'Hello, TypeScript!';
+  const containerEl = createContainer();
+
+  app.append(containerEl);
 }

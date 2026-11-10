@@ -63,7 +63,7 @@ export default function createForm(): HTMLFormElement {
   });
   fieldset2.append(formRow);
 
-  const formButton = createElement(
+  const formBtn = createElement(
     'button',
     {
       class: 'form__submit-btn',
@@ -80,7 +80,13 @@ export default function createForm(): HTMLFormElement {
     `Possible secrets ${possibleSecretsNum}`,
   );
 
-  form.append(fieldset1, fieldset2, info, formButton);
+  const leaderboardBtn = createElement(
+    'button',
+    { class: 'leaderboard-btn', type: 'button' },
+    'Leaderboard',
+  );
+
+  form.append(fieldset1, fieldset2, info, formBtn, leaderboardBtn);
 
   return form;
 }

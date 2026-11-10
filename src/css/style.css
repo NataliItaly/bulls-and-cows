@@ -71,6 +71,12 @@ fieldset {
   gap: 10px;
 }
 
+.form__legend {
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .form__label {
   font-size: 14px;
   text-transform: uppercase;
@@ -98,7 +104,7 @@ fieldset {
 
 .form__row-btn {
   flex: 1 1 60px;
-  padding: 0;
+  padding: 10px 0;
 }
 
 .form__row-btn_active {
@@ -119,7 +125,27 @@ fieldset {
 }
 
 .form__submit-btn {
-  background: #0b075e;
+  background: #363288;
+}
+
+.form__submit-btn:hover {
+  background: #3e399c;
+}
+
+.form__btn-settings {
+  background: #09063d url(../assets/settings.png) no-repeat 40px center / 20px;
+}
+
+.form__btn-settings:hover {
+  background: #0b0579 url(../assets/settings.png) no-repeat 40px center / 20px;
+}
+
+.leaderboard-btn {
+  background: #09063d url(../assets/win.png) no-repeat 40px center / 20px;
+}
+
+.leaderboard-btn:hover {
+  background: #0b0579 url(../assets/win.png) no-repeat 40px center / 20px;
 }
 
 @media (max-width: 480px) {

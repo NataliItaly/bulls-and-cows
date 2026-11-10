@@ -54,7 +54,7 @@ fieldset {
   padding: 20px;
 }
 
-.form {
+.screen {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -63,6 +63,9 @@ fieldset {
   padding: 40px;
   background: #05041d;
   border-radius: 15px;
+}
+
+.form {
 }
 
 .form__fieldset {

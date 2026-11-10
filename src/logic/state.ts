@@ -1,3 +1,8 @@
+export const constants = {
+  defaultLength: 4,
+  defaultBase: 10,
+};
+
 export type PreviousGame = {
   id: string;
   secret: string;
@@ -24,8 +29,8 @@ export type State = {
 const initialGameState: State = {
   id: '',
   secret: '',
-  length: undefined,
-  base: undefined,
+  length: constants.defaultLength,
+  base: constants.defaultBase,
   bulls: 0,
   cows: 0,
   possibleSecrets: 0,

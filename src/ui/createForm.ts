@@ -1,4 +1,6 @@
 import createElement from '../utils/createElement.js';
+import { constants } from '../logic/state.js';
+import countPossibleSecrets from '../logic/countPossibleSecrets.js';
 
 export default function createForm(): HTMLFormElement {
   const form: HTMLFormElement = createElement('form', { class: 'form' });
@@ -19,7 +21,7 @@ export default function createForm(): HTMLFormElement {
     );
     const min = '2';
     const max = el === 'length' ? '6' : '36';
-    const value = el === 'length' ? '4' : '10';
+    const value = el === 'length' ? String(constants.defaultLength) : String(constants.defaultBase);
     const input = createElement('input', {
       class: 'form__input',
       id: el,
@@ -46,7 +48,7 @@ export default function createForm(): HTMLFormElement {
 
   const formRow = createElement('div', { class: 'form__row form__btn-row' });
   ['bin', 'oct', 'dec', 'hex'].forEach((el) => {
-    const className = el === 'dec' ? 'form__row-btn, form__row-btn_active' : 'form__row-btn';
+    const className = el === 'dec' ? 'form__row-btn form__row-btn_active' : 'form__row-btn';
     const button = createElement(
       'button',
       {
@@ -71,7 +73,14 @@ export default function createForm(): HTMLFormElement {
     'Start Game',
   );
 
-  form.append(fieldset1, fieldset2, formButton);
+  const possibleSecretsNum = countPossibleSecrets(constants.defaultLength, constants.defaultBase);
+  const info = createElement(
+    'div',
+    { class: 'form__info' },
+    `Possible secrets ${possibleSecretsNum}`,
+  );
+
+  form.append(fieldset1, fieldset2, info, formButton);
 
   return form;
 }

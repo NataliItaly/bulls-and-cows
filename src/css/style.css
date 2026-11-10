@@ -111,6 +111,19 @@ fieldset {
   line-height: 20px;
 }
 
+.form__info {
+  text-align: center;
+  background: #141238;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .form__submit-btn {
   background: #0b075e;
+}
+
+@media (max-width: 480px) {
+  .form {
+    padding: 20px;
+  }
 }

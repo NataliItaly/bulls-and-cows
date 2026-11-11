@@ -32,7 +32,7 @@ export default function winnerScreen(time: string): HTMLElement {
 
   const leaderboardBtn = createElement(
     'button',
-    { class: 'leaderboard-btn', type: 'button', id: 'leaderboard-btn' },
+    { class: 'leaderboard__btn', type: 'button', id: 'leaderboard-btn' },
     'Leaderboard',
   );
 

@@ -82,7 +82,7 @@ export default function startScreen(): HTMLFormElement {
 
   const leaderboardBtn = createElement(
     'button',
-    { class: 'leaderboard-btn', type: 'button', id: 'leaderboard-btn' },
+    { class: 'leaderboard__btn', type: 'button', id: 'leaderboard-btn' },
     'Leaderboard',
   );
 

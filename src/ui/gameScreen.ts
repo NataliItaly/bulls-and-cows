@@ -35,6 +35,12 @@ export default function gameScreen(): HTMLElement {
     'Check',
   );
 
+  const result = createElement(
+    'div',
+    { class: 'game__result' },
+    `Bulls: ${gameState.bulls}, Cows: ${gameState.cows}`,
+  );
+
   const settingsBtn = createElement(
     'button',
     {
@@ -52,7 +58,7 @@ export default function gameScreen(): HTMLElement {
   );
 
   fieldset.append(legend, label, input, formBtn);
-  screen.append(fieldset, settingsBtn, leaderboardBtn);
+  screen.append(fieldset, result, settingsBtn, leaderboardBtn);
 
   return screen;
 }

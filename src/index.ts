@@ -12,6 +12,7 @@ import isNumberSystem from './utils/isNumberSystem.js';
 import setPossibleInfo from './utils/setPossibleInfo.js';
 import isValidSymbol from './logic/isValidSymbol.js';
 import isUniqueSymbol from './logic/isUniqueSynbol.js';
+import submitGameForm from './utils/submitGameForm.js';
 
 const app = document.querySelector<HTMLDivElement>('#app');
 
@@ -25,6 +26,11 @@ if (app) {
     if (targetEl instanceof HTMLFormElement && targetEl.classList.contains('form')) {
       e.preventDefault();
       submitStartForm(targetEl);
+    }
+
+    if (targetEl instanceof HTMLFormElement && targetEl.id === 'game') {
+      e.preventDefault();
+      submitGameForm(targetEl);
     }
   });
 
@@ -83,12 +89,25 @@ if (app) {
 
   containerEl.addEventListener('click', function (e: MouseEvent) {
     const targetEl = e.target;
+
+    if (
+      targetEl instanceof HTMLElement &&
+      targetEl.id === 'winner' &&
+      !targetEl.closest('.winner__inner')
+    ) {
+      const winnerScreen = document.getElementById('winner');
+      if (winnerScreen) winnerScreen.remove();
+    }
+
     if (targetEl instanceof HTMLButtonElement && targetEl.id === 'settings-btn') {
       const gameScreen = document.getElementById('game');
       if (gameScreen) gameScreen.remove();
 
       const leaderboardScreen = document.getElementById('leaderboard');
       if (leaderboardScreen) leaderboardScreen.remove();
+
+      const winnerScreen = document.getElementById('winner');
+      if (winnerScreen) winnerScreen.remove();
 
       const startScreenEl = startScreen();
       containerEl.append(startScreenEl);

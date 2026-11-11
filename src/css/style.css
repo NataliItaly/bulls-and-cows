@@ -151,6 +151,35 @@ fieldset {
   background: #0b0579 url(../assets/win.png) no-repeat 40px center / 20px;
 }
 
+.winner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.winner__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 500px;
+  padding: 60px 40px;
+  background: #05041d;
+  border-radius: 15px;
+}
+
+.winner__btn {
+  align-self: stretch;
+  margin-top: 30px;
+}
+
 @media (max-width: 480px) {
   .form {
     padding: 20px;

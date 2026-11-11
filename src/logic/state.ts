@@ -18,6 +18,7 @@ export type State = {
   secret: string;
   length: number;
   base: number;
+  currentValue: string;
   bulls: number;
   cows: number;
   attempt: number;
@@ -31,6 +32,7 @@ const initialGameState: State = {
   secret: '',
   length: constants.defaultLength,
   base: constants.defaultBase,
+  currentValue: '',
   bulls: 0,
   cows: 0,
   possibleSecrets: 0,

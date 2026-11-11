@@ -52,15 +52,19 @@ It uses a string containing all possible symbols (`0–9` and `a–z`) as the so
 
 The algorithm works as follows:
 
-1. Select the first `base` symbols from the available alphabet.
+1. Create a string containing the first `base` available symbols.
 2. Generate a random index within the current set of available symbols.
 3. Add the selected symbol to the result.
-4. Remove the selected symbol from the available set.
+4. Remove the selected symbol from the available string using `slice()` and `concat()`.
 5. Repeat until the required combination length is reached.
 
 Removing each selected symbol guarantees that the generated combination contains no duplicates.
 
-The random number generator is passed as an optional argument, which makes it possible to use deterministic values in unit tests.
+The random number generator is passed as an optional argument, allowing deterministic values to be supplied in unit tests.
+
+**Time complexity:** O(n × b), where `n` is the required secret length and `b` is the number of available symbols. Each iteration removes one symbol by creating a new string, which takes up to O(b) time.
+
+**Space complexity:** O(b), because the algorithm stores the available symbols and the resulting combination.
 
 ### 1.4. `evaluateGuess`
 
@@ -71,17 +75,19 @@ The function compares the player's guess with the secret combination and returns
 - A **bull** is a symbol that matches both the value and position in the secret.
 - A **cow** is a symbol that exists in the secret but occupies a different position.
 
-The implementation uses `split()` and `filter()` to examine the secret symbols.
+The algorithm uses `split()` and `filter()` to examine the secret symbols.
 
-The first filtering operation counts bulls by checking whether a symbol exists in the guess at the same position.
+The first filtering operation counts bulls by checking whether the first occurrence of each symbol in the guess is at the same position.
 
-The second filtering operation counts cows by checking whether a symbol exists in the guess at a different position.
+The second filtering operation counts cows by checking whether each symbol exists in the guess at a different position.
 
-The function returns:
+The function returns an object with two properties: `bulls` and `cows`.
 
-`{ bulls: number, cows: number }`
+It assumes that both combinations contain unique symbols. Input validation is handled separately.
 
-It operates on valid combinations with unique symbols. Input validation is handled separately.
+**Time complexity:** O(n²), where `n` is the combination length. For each symbol, the algorithm performs string searches using `indexOf()` and `includes()`, each of which can take O(n) time.
+
+**Space complexity:** O(n), because `split()` and `filter()` create temporary arrays proportional to the combination length.
 
 ### 1.5. `countPossibleSecrets`
 
@@ -92,7 +98,7 @@ The function calculates the number of possible combinations for a given length a
 Since symbols cannot be repeated, the problem is equivalent to calculating permutations without repetition:
 
 \[
-P(base,length)=\frac{base!}{(base-length)!}
+P(b,n)=\frac{b!}{(b-n)!}
 \]
 
 The implementation uses recursion and memoization.
@@ -100,7 +106,7 @@ The implementation uses recursion and memoization.
 The recursive helper calculates the result using the following relationship:
 
 \[
-P(base,length)=base \times P(base-1,length-1)
+P(b,n)=b \times P(b-1,n-1)
 \]
 
 Base cases:
@@ -108,11 +114,33 @@ Base cases:
 - When `length` is `0`, the result is `1`.
 - When `length` is `1`, the result is equal to `base`.
 
-A `Map` stores previously calculated results. This avoids repeating calculations when the same combination of arguments is requested again.
+A `Map` stores previously calculated results using the combination of `length` and `base` as a key. This avoids repeating calculations when the same arguments are requested again.
 
-The public function validates its arguments before performing the calculation.
+The public function validates its arguments and displays an error message when invalid values are provided.
 
----
+**Time complexity:** O(n) for a single calculation that requires a new recursive result, where `n` is the requested combination length. Each recursive call reduces the length by one. Previously calculated results can be retrieved from the cache in O(1) average time.
+
+**Space complexity:** O(n) for a single recursive calculation due to the call stack. The cache additionally stores previously calculated results, with O(K) space for K distinct argument pairs.
+
+### 1.6. `isValidGuess`
+
+File: `src/logic/isValidGuess.ts`
+
+The function validates the player's guess by checking three conditions:
+
+1. The guess must have the required length.
+2. All symbols must be unique.
+3. Every symbol must belong to the selected number system.
+
+The function uses a `Set` to detect duplicate symbols. Since a `Set` stores only unique values, comparing its size with the original string length determines whether repeated symbols exist.
+
+To validate the symbols, the function creates a string containing the allowed characters for the selected base. It then uses `every()` and `includes()` to check each character. The `toLowerCase()` method allows uppercase letters to be accepted as well.
+
+The function returns `true` only when all three conditions are satisfied.
+
+**Time complexity:** O(n × b), where `n` is the guess length and `b` is the number of available symbols. Each character is checked against the allowed-symbol string using `includes()`, which can take O(b) time.
+
+**Space complexity:** O(n + b), because the function creates a `Set`, a temporary character array and a string containing the allowed symbols.
 
 ## 2. Time and Space Complexity
 

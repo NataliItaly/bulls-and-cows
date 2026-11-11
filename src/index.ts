@@ -23,7 +23,7 @@ if (app) {
 
   containerEl.addEventListener('submit', function (e: SubmitEvent) {
     const targetEl = e.target;
-    if (targetEl instanceof HTMLFormElement && targetEl.classList.contains('form')) {
+    if (targetEl instanceof HTMLFormElement && targetEl.id === 'start-form') {
       e.preventDefault();
       submitStartForm(targetEl);
     }
@@ -84,6 +84,11 @@ if (app) {
         }
       }
       targetEl.value = validValue;
+
+      if (validValue.length === gameState.length) {
+        const checkBtn = document.getElementById('game-form-btn');
+        if (checkBtn instanceof HTMLButtonElement) checkBtn.disabled = false;
+      }
     }
   });
 

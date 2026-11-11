@@ -1,10 +1,12 @@
-import { setGameState } from '../logic/state.js';
+import { setGameState, resetGameState } from '../logic/state.js';
 import generateSecret from '../logic/generateSecret.js';
 import countPossibleSecrets from '../logic/countPossibleSecrets.js';
 import gameScreen from '../ui/gameScreen.js';
 import setErrorMessage from './setErrorMessage.js';
 
 export default function submitStartForm(el: HTMLFormElement) {
+  resetGameState();
+
   const formData = new FormData(el);
   const length: number = Number(formData.get('length'));
   const base: number = Number(formData.get('base'));

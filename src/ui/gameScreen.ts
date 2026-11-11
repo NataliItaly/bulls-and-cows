@@ -1,5 +1,5 @@
 import createElement from '../utils/createElement.js';
-import { getGameState } from '../logic/state.js';
+import { State, getGameState } from '../logic/state.js';
 
 export default function gameScreen(): HTMLElement {
   const gameState = getGameState();
@@ -25,21 +25,38 @@ export default function gameScreen(): HTMLElement {
     type: 'text',
     maxLength: String(gameState.length),
   });
+
+  const isDisabled: string = String(gameState.currentValue.length !== gameState.length);
   const formBtn = createElement(
     'button',
     {
       class: 'form__submit-btn',
       id: 'game-form-btn',
       type: 'submit',
+      disabled: isDisabled,
     },
     'Check',
   );
 
-  const result = createElement(
-    'div',
-    { class: 'game__result' },
-    `Bulls: ${gameState.bulls}, Cows: ${gameState.cows}`,
-  );
+  const resultEl = createElement('div', { class: 'game__result' });
+  const resultRow = createElement('p', { class: 'game__result-row' });
+
+  const results: (keyof State | 'num')[] = ['attempt', 'num', 'bulls', 'cows'];
+  results.forEach((el) => {
+    const numText =
+      gameState.currentValue !== ''
+        ? gameState.currentValue
+        : Array.from({ length: gameState.length }, () => '-').join('');
+
+    const text: string = el === 'num' ? numText : (gameState[el] as string);
+    const resEl = createElement(
+      'span',
+      { class: `game__result-cell game__${el}` },
+      `${el}: ${text}`,
+    );
+    resultRow.append(resEl);
+  });
+  resultEl.append(resultRow);
 
   const settingsBtn = createElement(
     'button',
@@ -58,7 +75,7 @@ export default function gameScreen(): HTMLElement {
   );
 
   fieldset.append(legend, label, input, formBtn);
-  screen.append(fieldset, result, settingsBtn, leaderboardBtn);
+  screen.append(fieldset, resultEl, settingsBtn, leaderboardBtn);
 
   return screen;
 }

@@ -38,6 +38,12 @@ button:hover {
   background: #0b0579;
 }
 
+button:disabled {
+  opacity: 0.7;
+  pointer-events: none;
+  cursor: none;
+}
+
 fieldset {
   border: none;
 }
@@ -151,6 +157,14 @@ fieldset {
   background: #0b0579 url(../assets/win.png) no-repeat 40px center / 20px;
 }
 
+.game__result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
 .winner {
   position: fixed;
   top: 0;
@@ -183,5 +197,23 @@ fieldset {
 @media (max-width: 480px) {
   .form {
     padding: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .game__result {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 390px) {
+  .game__result {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 370px) {
+  .game__result {
+    font-size: 11px;
   }
 }

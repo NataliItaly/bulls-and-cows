@@ -13,11 +13,15 @@ export default function submitGameForm(el: HTMLFormElement): void {
   setGameState({ attempt: currentAttempt });
 
   const formData = new FormData(el);
-  const value: string = String(formData.get('game-input'));
+  const value: string = String(formData.get('game-input')).toLowerCase();
 
   if (value) {
     if (isValidGuess(value, gameState.length, gameState.base)) {
-      setGameState({ currentValue: value });
+      if (gameState.currentAttempts.includes(value)) {
+        el.reset();
+        return;
+      }
+      setGameState({ currentValue: value, currentAttempts: [...gameState.currentAttempts, value] });
       const { bulls, cows } = evaluateGuess(gameState.secret, value);
 
       const numText = value;

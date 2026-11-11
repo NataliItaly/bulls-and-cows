@@ -204,6 +204,11 @@ fieldset {
   align-items: center;
   font-size: 14px;
   text-transform: uppercase;
+  padding: 5px;
+}
+
+.game__result-row:nth-of-type(2n) {
+  background: #161642;
 }
 
 .game__result-row span {
@@ -276,7 +281,7 @@ fieldset {
   .leaderboard {
     padding: 10px;
   }
-  .game__result {
+  .game__result-row {
     font-size: 12px;
   }
   .leaderboard__row {

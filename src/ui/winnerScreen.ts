@@ -30,7 +30,13 @@ export default function winnerScreen(time: string): HTMLElement {
     'Start Game',
   );
 
-  screenInner.append(title, secret, attempts, timeStr, settingsBtn);
+  const leaderboardBtn = createElement(
+    'button',
+    { class: 'leaderboard-btn', type: 'button', id: 'leaderboard-btn' },
+    'Leaderboard',
+  );
+
+  screenInner.append(title, secret, attempts, timeStr, settingsBtn, leaderboardBtn);
   screen.append(screenInner);
   return screen;
 }

@@ -157,6 +157,25 @@ fieldset {
   background: #0b0579 url(../assets/win.png) no-repeat 40px center / 20px;
 }
 
+.leaderboard__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.leaderboard__cell,
+.leaderboard__header-cell {
+  width: 50px;
+  text-align: center;
+}
+
+.leaderboard__header-row {
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
 .game__result-row {
   display: flex;
   justify-content: space-between;
@@ -207,8 +226,18 @@ fieldset {
 }
 
 @media (max-width: 390px) {
+  .screen {
+    padding: 20px;
+  }
   .game__result {
     font-size: 12px;
+  }
+  .leaderboard__row {
+    font-size: 12px;
+    gap: 15px;
+  }
+  .leaderboard__header-row {
+    font-size: 9px;
   }
 }
 

@@ -1,4 +1,4 @@
-import { State, getGameState, setGameState } from '../logic/state.js';
+import { State, PreviousGame, getGameState, setGameState } from '../logic/state.js';
 import isValidGuess from '../logic/isValidGuess.js';
 import evaluateGuess from '../logic/evaluateGuess.js';
 import winnerScreen from '../ui/winnerScreen.js';
@@ -52,13 +52,26 @@ export default function submitGameForm(el: HTMLFormElement): void {
       if (bulls === gameState.length) {
         const startTime = gameState.startTime;
         const endTime = Date.now();
-        const time = calcDuration(startTime as number, endTime);
+        const duration = endTime - Number(startTime);
+        const durationStr = calcDuration(duration);
 
-        const winnerScreenEl = winnerScreen(time);
+        const winnerScreenEl = winnerScreen(durationStr);
         const container = document.querySelector('.container');
         if (container) {
           container.append(winnerScreenEl);
         }
+
+        const { id, secret, length, base, attempt } = gameState;
+        const currentGame: PreviousGame = {
+          id,
+          secret,
+          length,
+          base,
+          attempt,
+          duration,
+          completedAt: endTime,
+        };
+        setGameState({ previousGames: [...gameState.previousGames, currentGame] });
       }
 
       setGameState({ bulls, cows });

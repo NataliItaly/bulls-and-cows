@@ -1,5 +1,7 @@
 import createElement from '../utils/createElement.js';
 import { getGameState, type PreviousGame } from '../logic/state.js';
+import calcDuration from '../utils/calcDuration.js';
+import calcCompletedAt from '../utils/calcCompletedAt.js';
 
 export default function leaderboardScreen(): HTMLElement {
   const gameState = getGameState();
@@ -13,26 +15,42 @@ export default function leaderboardScreen(): HTMLElement {
     screenInner.textContent = 'There is no winners yet';
   }
 
+  const gameInfo: (keyof PreviousGame)[] = ['secret', 'base', 'attempt', 'duration', 'completedAt'];
+  const headerRow = createElement('div', {
+    class: 'leaderboard__row leaderboard__header-row',
+  });
+  gameInfo.forEach((el) => {
+    const text = el === 'completedAt' ? 'date' : el;
+    const screenCell = createElement(
+      'span',
+      {
+        class: 'leaderboard__header-cell',
+      },
+      text,
+    );
+    headerRow.append(screenCell);
+  });
+  screenInner.append(headerRow);
+
   previousGames.forEach((game: PreviousGame) => {
     const screenRow = createElement('div', {
       class: 'leaderboard__row',
       id: game.id,
     });
-    const gameInfo: (keyof PreviousGame)[] = [
-      'id',
-      'secret',
-      'base',
-      'attempt',
-      'duration',
-      'completedAt',
-    ];
+
     gameInfo.forEach((el) => {
+      const text =
+        el === 'duration'
+          ? calcDuration(game.duration)
+          : el === 'completedAt'
+            ? calcCompletedAt(game.completedAt)
+            : String(game[el]);
       const screenCell = createElement(
         'span',
         {
           class: 'leaderboard__cell',
         },
-        String(game[el]),
+        text,
       );
       screenRow.append(screenCell);
     });

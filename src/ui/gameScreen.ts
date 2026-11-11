@@ -68,14 +68,8 @@ export default function gameScreen(): HTMLElement {
     'Settings',
   );
 
-  const leaderboardBtn = createElement(
-    'button',
-    { class: 'leaderboard-btn', id: 'leaderboard-btn', type: 'button' },
-    'Leaderboard',
-  );
-
   fieldset.append(legend, label, input, formBtn);
-  screen.append(fieldset, resultEl, settingsBtn, leaderboardBtn);
+  screen.append(fieldset, resultEl, settingsBtn);
 
   return screen;
 }

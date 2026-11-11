@@ -23,7 +23,7 @@ if (app) {
 
   containerEl.addEventListener('submit', function (e: SubmitEvent) {
     const targetEl = e.target;
-    if (targetEl instanceof HTMLFormElement && targetEl.id === 'start-form') {
+    if (targetEl instanceof HTMLFormElement && targetEl.id === 'start') {
       e.preventDefault();
       submitStartForm(targetEl);
     }
@@ -120,6 +120,7 @@ if (app) {
 
     if (targetEl instanceof HTMLButtonElement && targetEl.id === 'leaderboard-btn') {
       const leaderboardEl = leaderboardScreen();
+
       const startScreen = document.getElementById('start');
       if (startScreen) startScreen.remove();
 

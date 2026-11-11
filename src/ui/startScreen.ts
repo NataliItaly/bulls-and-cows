@@ -3,7 +3,7 @@ import { constants } from '../logic/state.js';
 import countPossibleSecrets from '../logic/countPossibleSecrets.js';
 
 export default function startScreen(): HTMLFormElement {
-  const form: HTMLFormElement = createElement('form', { class: 'screen form', id: 'start-form' });
+  const form: HTMLFormElement = createElement('form', { class: 'screen form', id: 'start' });
   const fieldset1 = createElement('fieldset', { class: 'form__fieldset' });
   const fieldsetTitle1 = createElement(
     'h3',

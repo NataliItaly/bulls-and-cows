@@ -1,12 +1,11 @@
-import { POSSIBLE_DIGITS } from './constants.js';
+import createDigitValidator from './createDigitValidator.js';
 
 export default function isValidGuess(guess: string, length: number, base: number): boolean {
   const hasCorrectLength = guess.length === length;
   const areUnique: boolean = new Set(guess).size === guess.length;
-  const currentDigits = POSSIBLE_DIGITS.slice(0, base);
-  const basedDigits: boolean = guess
-    .split('')
-    .every((el) => currentDigits.includes(el.toLowerCase()));
+
+  const isValidDigit = createDigitValidator(base);
+  const basedDigits: boolean = guess.split('').every((el) => isValidDigit(el));
 
   return hasCorrectLength && areUnique && basedDigits;
 }

@@ -10,9 +10,9 @@ import { BASES } from './logic/getBase.js';
 import setErrorMessage from './utils/setErrorMessage.js';
 import isNumberSystem from './utils/isNumberSystem.js';
 import setPossibleInfo from './utils/setPossibleInfo.js';
-import isValidSymbol from './logic/isValidSymbol.js';
-import isUniqueSymbol from './logic/isUniqueSynbol.js';
+import isUniqueSymbol from './logic/isUniqueSymbol.js';
 import submitGameForm from './utils/submitGameForm.js';
+import createDigitValidator from './logic/createDigitValidator.js';
 
 const app = document.querySelector<HTMLDivElement>('#app');
 
@@ -75,11 +75,12 @@ if (app) {
     }
     if (targetEl instanceof HTMLInputElement && targetEl.id === 'game-input') {
       const gameState = getGameState();
+      const isValidDigit = createDigitValidator(gameState.base);
 
       let validValue: string = '';
       const value = targetEl.value;
       for (const char of value) {
-        if (isValidSymbol(char, gameState.base) && isUniqueSymbol(char, validValue)) {
+        if (isValidDigit(char) && isUniqueSymbol(char, validValue)) {
           validValue += char;
         }
       }

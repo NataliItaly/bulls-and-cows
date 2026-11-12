@@ -1,0 +1,300 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  color: #c6c9d8;
+  background: #070529;
+}
+
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #c6c9d8;
+  background: #09063d;
+  border-radius: 5px;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0b0579;
+}
+
+button:disabled {
+  opacity: 0.7;
+  pointer-events: none;
+  cursor: none;
+}
+
+fieldset {
+  border: none;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  background: #05041d;
+  border-radius: 15px;
+}
+
+.form__fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form__legend {
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.form__label {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.form__input {
+  padding: 10px;
+  border: 1px solid #c6c9d8;
+  color: #c6c9d8;
+  background: #09063d;
+  border-radius: 5px;
+}
+
+.form__row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form__btn-row {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form__row-btn {
+  flex: 1 1 60px;
+  padding: 10px 0;
+}
+
+.form__row-btn_active {
+  background: #200092;
+}
+
+.form__error {
+  height: 20px;
+  color: #f85e5e;
+  line-height: 20px;
+}
+
+.form__info {
+  text-align: center;
+  background: #141238;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.form__submit-btn {
+  background: #363288;
+}
+
+.form__submit-btn:hover {
+  background: #3e399c;
+}
+
+.form__btn-settings {
+  background: #09063d url(../assets/settings.png) no-repeat 40px center / 20px;
+}
+
+.form__btn-settings:hover {
+  background: #0b0579 url(../assets/settings.png) no-repeat 40px center / 20px;
+}
+
+.leaderboard {
+  gap: 30px;
+  padding: 20px;
+}
+
+.leaderboard__inner {
+  width: 100%;
+  background: #111131;
+  border-radius: 10px;
+}
+
+.leaderboard__btn {
+  align-self: stretch;
+  background: #09063d url(../assets/win.png) no-repeat 40px center / 20px;
+}
+
+.leaderboard__btn:hover {
+  background: #0b0579 url(../assets/win.png) no-repeat 40px center / 20px;
+}
+
+.leaderboard__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 2px;
+  border-radius: 2px;
+}
+
+.leaderboard__row:nth-of-type(2n) {
+  background: #161642;
+}
+
+.leaderboard__row:not(:last-of-type) {
+  margin-bottom: 3px;
+}
+
+.leaderboard__header-row {
+  font-size: 11px;
+  text-transform: uppercase;
+  background: #111131 !important;
+  padding: 5px 2px;
+  margin-bottom: 5px;
+  margin-bottom: 7px !important;
+}
+
+.leaderboard__cell,
+.leaderboard__header-cell {
+  width: 50px;
+  text-align: center;
+}
+
+.game__result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 5px;
+}
+
+.game__result-row:nth-of-type(2n) {
+  background: #161642;
+}
+
+.game__result-row span {
+  text-align: center;
+}
+
+.winner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.winner__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+  padding: 60px 40px;
+  background: #05041d;
+  border-radius: 15px;
+}
+
+.winner__title {
+  margin-bottom: 10px;
+}
+
+.winner__number,
+.winner__attempt,
+.winner__time {
+  align-self: stretch;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.winner__number,
+.winner__time {
+  background-color: #111131;
+}
+
+.winner__btn {
+  align-self: stretch;
+  margin-top: 30px;
+}
+
+@media (max-width: 480px) {
+  .form {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .game__result {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 390px) {
+  .screen {
+    padding: 20px;
+  }
+  .leaderboard {
+    padding: 10px;
+  }
+  .game__result-row {
+    font-size: 12px;
+  }
+  .leaderboard__row {
+    font-size: 13px;
+    gap: 15px;
+  }
+  .leaderboard__header-row {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 370px) {
+  .game__result {
+    font-size: 11px;
+  }
+}

@@ -21,17 +21,24 @@ export default function submitGameForm(el: HTMLFormElement): void {
         el.reset();
         return;
       }
-      setGameState({ currentValue: value, currentAttempts: [...gameState.currentAttempts, value] });
+      //setGameState({ currentValue: value, currentAttempts: [...gameState.currentAttempts, value] });
       const { bulls, cows } = evaluateGuess(gameState.secret, value);
+      setGameState({
+        currentValue: value,
+        currentAttempts: [...gameState.currentAttempts, value],
+        bulls,
+        cows,
+      });
 
       const numText = value;
       const results: (keyof State | 'num')[] = ['attempt', 'num', 'bulls', 'cows'];
+      const newGameState = getGameState();
 
       if (initialValue === '') {
         results.forEach((el) => {
           const resEl = document.querySelector(`.game__${el}`);
           if (resEl) {
-            const text: string = el === 'num' ? numText : (gameState[el] as string);
+            const text: string = el === 'num' ? numText : (newGameState[el] as string);
             resEl.textContent = `${el}: ${text}`;
           }
         });
@@ -40,7 +47,7 @@ export default function submitGameForm(el: HTMLFormElement): void {
         results.forEach((el) => {
           const numText = value;
 
-          const text: string = el === 'num' ? numText : (gameState[el] as string);
+          const text: string = el === 'num' ? numText : (newGameState[el] as string);
           const resEl = createElement(
             'span',
             { class: `game__result-cell game__${el}` },
@@ -54,7 +61,7 @@ export default function submitGameForm(el: HTMLFormElement): void {
       }
 
       if (bulls === gameState.length) {
-        const startTime = gameState.startTime;
+        const startTime = newGameState.startTime;
         const endTime = Date.now();
         const duration = endTime - Number(startTime);
         const durationStr = calcDuration(duration);
@@ -65,7 +72,7 @@ export default function submitGameForm(el: HTMLFormElement): void {
           container.append(winnerScreenEl);
         }
 
-        const { id, secret, length, base, attempt } = gameState;
+        const { id, secret, length, base, attempt } = newGameState;
         const currentGame: PreviousGame = {
           id,
           secret,
@@ -75,10 +82,10 @@ export default function submitGameForm(el: HTMLFormElement): void {
           duration,
           completedAt: endTime,
         };
-        setGameState({ previousGames: [...gameState.previousGames, currentGame] });
+        setGameState({ previousGames: [...newGameState.previousGames, currentGame] });
       }
-
-      setGameState({ bulls, cows });
+      // set bulls and cows too late
+      //setGameState({ bulls, cows });
     }
     el.reset();
   }

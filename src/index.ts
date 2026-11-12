@@ -128,6 +128,9 @@ if (app) {
       const gameScreen = document.getElementById('game');
       if (gameScreen) gameScreen.remove();
 
+      const winnerScreen = document.getElementById('winner');
+      if (winnerScreen) winnerScreen.remove();
+
       containerEl.append(leaderboardEl);
     }
 
